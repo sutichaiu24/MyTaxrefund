@@ -1,5 +1,6 @@
 
 from selenium import webdriver
+import  time
 import  csv
 browser =  webdriver.Chrome()
 
@@ -18,19 +19,18 @@ Submit = browser.find_element_by_id('Submit2')
 
 socialFile = open('social.csv')
 rowReader = csv.reader(socialFile)
-for row in rowReader:
-    TIN3.send_keys(rowReader[row][0].split('-')[0])
-    TIN2.send_keys(rowReader[row][0].split('-')[1])
-    TIN5.send_keys(rowReader[row][0].split('-')[2])
+
+for row in rowReader :
+      TIN3.send_keys(row[0].split('-')[0])
+      TIN2.send_keys(row[0].split('-')[1])
+      TIN5.send_keys(row[0].split('-')[2])
+      Single.click()
+      Refund.send_keys(row[1])
+      time.sleep(3)
 
 
-
-TIN3.send_keys('687')
-TIN2.send_keys('94')
-TIN5.send_keys('6329')
-Single.click()
-Refund.send_keys('232')
 Submit.click()
 
+browser.close()
 
 

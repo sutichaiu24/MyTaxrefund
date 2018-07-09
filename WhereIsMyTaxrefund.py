@@ -2,6 +2,9 @@
 from selenium import webdriver
 import  time
 import  csv
+
+from selenium.common.exceptions import NoSuchElementException
+
 browser =  webdriver.Chrome()
 
 browser.get('https://sa.www4.irs.gov/irfof/lang/en/irfofgetstatus.jsp')
@@ -31,11 +34,18 @@ for row in rowReader :
       # TIN2.clear()
       # TIN5.clear()
       Submit.click()
-      if browser.find_element_by_id("contentpage_lesswhitespace"):
+      outputFile = open('report.csv', 'w')
+      try :
+            element = browser.find_element_by_id("contentpage_lesswhitespace")
+      except NoSuchElementException :
+            outputWriter = csv.writer(outputFile)
+            outputWriter.writerow([row[2] + ' have to wait'])
+
+      if element.is_displayed():
             result = browser.find_element_by_id("contentpage_lesswhitespace").text
-            print(result)
-      else:
-                print ("Sorry ")
+            outputWriter = csv.writer(outputFile)
+            outputWriter.writerow([row[2]+' receive'+ result])
+
 
       browser.find_element_by_id('getrefundstatus1').click()
 

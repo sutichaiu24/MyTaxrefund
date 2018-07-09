@@ -26,10 +26,24 @@ for row in rowReader :
       TIN5.send_keys(row[0].split('-')[2])
       Single.click()
       Refund.send_keys(row[1])
-      time.sleep(3)
+      time.sleep(2)
+      # TIN3.clear()
+      # TIN2.clear()
+      # TIN5.clear()
+      Submit.click()
+      if browser.find_element_by_id("contentpage_lesswhitespace"):
+            result = browser.find_element_by_id("contentpage_lesswhitespace").text
+            print(result)
+      else:
+                print ("Sorry ")
+
+      browser.find_element_by_id('getrefundstatus1').click()
+
+browser.close()
 
 
-Submit.click()
+
+
 
 browser.close()
 

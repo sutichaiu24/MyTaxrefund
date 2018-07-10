@@ -20,7 +20,7 @@ Single = browser.find_element_by_id('filingStatus1')
 Refund = browser.find_element_by_id('refundAmount')
 Submit = browser.find_element_by_id('Submit2')
 
-socialFile = open('social.csv')
+socialFile = open('MAX.csv')
 rowReader = csv.reader(socialFile)
 
 for row in rowReader :
@@ -30,9 +30,10 @@ for row in rowReader :
       Single.click()
       Refund.send_keys(row[1])
       time.sleep(2)
-      # TIN3.clear()
-      # TIN2.clear()
-      # TIN5.clear()
+      TIN3.clear()
+      TIN2.clear()
+      TIN5.clear()
+      Refund.clear()
       Submit.click()
       outputFile = open('report.csv', 'w')
       try :
@@ -54,7 +55,5 @@ browser.close()
 
 
 
-
-browser.close()
 
 

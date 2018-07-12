@@ -5,8 +5,7 @@ import  csv
 import requests,json
 import urllib.parse
 
-LINE_ACCESS_TOKEN="LQNe4sqZ5ouBgWjJpSOFO9FLpGxUB4WIvyTE0t0hAiR"
-url = "https://notify-api.line.me/api/notify"
+
 
 browser =  webdriver.Chrome()
 
@@ -48,14 +47,15 @@ for row in rowReader :
 browser.close()
 
 
-
-def linenotify (botmessage) :
-      message ="botmessage  # ข้อความที่ต้องการส่ง
-      msg = urllib.parse.urlencode({"message":message})
-      LINE_HEADERS = {'Content-Type':'application/x-www-form-urlencoded',"Authorization":"Bearer "+LINE_ACCESS_TOKEN}
-      session = requests.Session()
-      a=session.post(url, headers=LINE_HEADERS, data=msg)
-      print(a.text)
+# LINE_ACCESS_TOKEN="LQNe4sqZ5ouBgWjJpSOFO9FLpGxUB4WIvyTE0t0hAiR"
+# url = "https://notify-api.line.me/api/notify"
+# def linenotify (botmessage) :
+#       message ="botmessage  # ข้อความที่ต้องการส่ง
+#       msg = urllib.parse.urlencode({"message":message})
+#       LINE_HEADERS = {'Content-Type':'application/x-www-form-urlencoded',"Authorization":"Bearer "+LINE_ACCESS_TOKEN}
+#       session = requests.Session()
+#       a=session.post(url, headers=LINE_HEADERS, data=msg)
+#       print(a.text)
 
 
 

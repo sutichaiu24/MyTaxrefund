@@ -25,6 +25,9 @@ Submit = browser.find_element_by_id('Submit2')
 socialFile = open('social.csv')
 rowReader = csv.reader(socialFile)
 
+socialFile = open('social.csv')
+rowReader = csv.reader(socialFile)
+
 for row in rowReader :
       TIN3.send_keys(row[0].split('-')[0])
       TIN2.send_keys(row[0].split('-')[1])
@@ -36,15 +39,23 @@ for row in rowReader :
       # TIN2.clear()
       # TIN5.clear()
       Submit.click()
-      if browser.find_element_by_id("contentpage_lesswhitespace"):
+      outputFile = open('report.csv', 'w')
+      try :
+            element = browser.find_element_by_id("contentpage_lesswhitespace")
+      except NoSuchElementException :
+            outputWriter = csv.writer(outputFile)
+            outputWriter.writerow([row[2] + ' have to wait'])
+
+      if element.is_displayed():
             result = browser.find_element_by_id("contentpage_lesswhitespace").text
-            def linenotify (result)
-      else:
-                print ("Sorry ")
+            outputWriter = csv.writer(outputFile)
+            outputWriter.writerow([row[2]+' receive'+ result])
+
 
       browser.find_element_by_id('getrefundstatus1').click()
 
 browser.close()
+
 
 
 # LINE_ACCESS_TOKEN="LQNe4sqZ5ouBgWjJpSOFO9FLpGxUB4WIvyTE0t0hAiR"

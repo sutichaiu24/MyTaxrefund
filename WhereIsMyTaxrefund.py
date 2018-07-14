@@ -10,7 +10,7 @@ from selenium.common.exceptions import StaleElementReferenceException
 
 LINE_ACCESS_TOKEN="LQNe4sqZ5ouBgWjJpSOFO9FLpGxUB4WIvyTE0t0hAiR"
 url = "https://notify-api.line.me/api/notify"
-wait_message= ' has not come yet'
+wait_message= ' tax refund has not come yet'
 def linenotify (botmessage) :
       message = botmessage
       msg = urllib.parse.urlencode({"message":message})
@@ -60,18 +60,19 @@ def autotax ():
             outputFile = open('report.csv', 'w')
             try :
                   element = browser.find_element_by_id("contentpage_lesswhitespace")
+                  if element.is_displayed():
+                        result = browser.find_element_by_id("contentpage_lesswhitespace").text
+                        outputWriter = csv.writer(outputFile)
+                        outputWriter.writerow([row[2] + ' receive' + result])
+                        print(row[2]+'receive'+ result)
+                        linenotify(row[2] + result)
             except NoSuchElementException :
                   outputWriter = csv.writer(outputFile)
                   outputWriter.writerow([row[2] + wait_message])
                   linenotify(row[2]+ wait_message )
-            try :
-                  if element.is_displayed():
-                        result = browser.find_element_by_id("contentpage_lesswhitespace").text
-                        outputWriter = csv.writer(outputFile)
-                        outputWriter.writerow([row[2]+' receive'+ result])
-                        linenotify(row[2]+ result)
-                  browser.find_element_by_id('getrefundstatus1').click()
-            
+                  print(row[2]+wait_message)
+
+      browser.find_element_by_id('getrefundstatus1').click()
 
 while (True):
       print ("HI I AM SOMSAK I AM HERE FOR HELP")

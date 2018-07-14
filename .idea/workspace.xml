@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="815d7ca1-9cd7-44a0-bfb9-a46879e0070a" name="Default" comment="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;WhereIsMyTaxrefund.py">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/MyTaxrefund.iml" afterPath="$PROJECT_DIR$/.idea/MyTaxrefund.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WhereIsMyTaxrefund.py" afterPath="$PROJECT_DIR$/WhereIsMyTaxrefund.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/report.csv" afterPath="$PROJECT_DIR$/report.csv" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,8 +18,8 @@
       <file leaf-file-name="WhereIsMyTaxrefund.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WhereIsMyTaxrefund.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1008">
-              <caret line="73" column="12" lean-forward="false" selection-start-line="73" selection-start-column="12" selection-end-line="73" selection-end-column="12" />
+            <state relative-caret-position="204">
+              <caret line="12" column="27" lean-forward="false" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
               <folding>
                 <element signature="e#1#31#0" expanded="true" />
               </folding>
@@ -667,8 +665,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/WhereIsMyTaxrefund.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1008">
-          <caret line="73" column="12" lean-forward="false" selection-start-line="73" selection-start-column="12" selection-end-line="73" selection-end-column="12" />
+        <state relative-caret-position="204">
+          <caret line="12" column="27" lean-forward="false" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
           <folding>
             <element signature="e#1#31#0" expanded="true" />
           </folding>

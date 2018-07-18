@@ -6,6 +6,9 @@ import urllib.parse
 
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import StaleElementReferenceException
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
 
 LINE_ACCESS_TOKEN="zX9fLdqjb8pGxiLxQ8hvB2Uc3JHvEAm7UkaXzIkf1DQ"
 url = "https://notify-api.line.me/api/notify"
@@ -17,7 +20,7 @@ def linenotify (botmessage) :
       session = requests.Session()
       a=session.post(url, headers=LINE_HEADERS, data=msg)
       print(a.text)
-browser =  webdriver.Chrome()
+browser =  webdriver.Chrome("/Users/sudhichaiungsuthornrungsi/Documents/Webdriver/chromedriver")
 browser.get('https://sa.www4.irs.gov/irfof/lang/en/irfofgetstatus.jsp')
 time.sleep(2)
 browser.switch_to.alert.accept()
@@ -32,11 +35,19 @@ Submit = browser.find_element_by_id('Submit2')
 
 socialFile = open('social.csv')
 rowReader = csv.reader(socialFile)
-
 def autotax ():
       for row in rowReader :
             staleElement = True
+            try:
+                  WebDriverWait(browser, 3).until(EC.alert_is_present(),
+                                                  'Timed out waiting for PA creation ' +
+                                                  'confirmation popup to appear.')
 
+                  alert = browser.switch_to.alert
+                  alert.accept()
+                  print("alert accepted")
+            except TimeoutException:
+                  print("no alert")
             while (staleElement):
                   try:
                         TIN3 = browser.find_element_by_id('TIN3')

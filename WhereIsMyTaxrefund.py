@@ -1,4 +1,3 @@
-
 from selenium import webdriver
 import time
 import csv
@@ -8,9 +7,9 @@ import urllib.parse
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import StaleElementReferenceException
 
-LINE_ACCESS_TOKEN="LQNe4sqZ5ouBgWjJpSOFO9FLpGxUB4WIvyTE0t0hAiR"
+LINE_ACCESS_TOKEN="zX9fLdqjb8pGxiLxQ8hvB2Uc3JHvEAm7UkaXzIkf1DQ"
 url = "https://notify-api.line.me/api/notify"
-wait_message= ' tax refund has not come yet'
+wait_message= 'tax refund has not come yet'
 def linenotify (botmessage) :
       message = botmessage
       msg = urllib.parse.urlencode({"message":message})
@@ -34,10 +33,10 @@ Submit = browser.find_element_by_id('Submit2')
 socialFile = open('social.csv')
 rowReader = csv.reader(socialFile)
 
-
 def autotax ():
       for row in rowReader :
             staleElement = True
+
             while (staleElement):
                   try:
                         TIN3 = browser.find_element_by_id('TIN3')
@@ -49,7 +48,7 @@ def autotax ():
                         staleElement = False
                   except StaleElementReferenceException:
                         staleElement = True
-
+            print('คนที่'+ str(rowReader.line_num))
             TIN3.send_keys(row[0].split('-')[0])
             TIN2.send_keys(row[0].split('-')[1])
             TIN5.send_keys(row[0].split('-')[2])
@@ -71,8 +70,7 @@ def autotax ():
                   outputWriter.writerow([row[2] + wait_message])
                   linenotify(row[2]+ wait_message )
                   print(row[2]+wait_message)
-
-      browser.find_element_by_id('getrefundstatus1').click()
+            browser.find_element_by_id('getrefundstatus1').click()
 
 while (True):
       print ("HI I AM SOMSAK I AM HERE FOR HELP")

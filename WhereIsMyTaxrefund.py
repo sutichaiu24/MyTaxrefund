@@ -4,11 +4,14 @@ import csv
 import requests
 import urllib.parse
 
+
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import StaleElementReferenceException
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import NoAlertPresentException
+from selenium.webdriver.support.ui import WebDriverWait
+
+
 
 LINE_ACCESS_TOKEN="zX9fLdqjb8pGxiLxQ8hvB2Uc3JHvEAm7UkaXzIkf1DQ"
 url = "https://notify-api.line.me/api/notify"
@@ -20,6 +23,14 @@ def linenotify (botmessage) :
       session = requests.Session()
       a=session.post(url, headers=LINE_HEADERS, data=msg)
       print(a.text)
+
+def isAlertPresent():
+      try:
+             browser.switch_to.alert
+             return True
+      except  NoAlertPresentException:
+            print ('Noalert')
+            return False
 browser =  webdriver.Chrome("/Users/sudhichaiungsuthornrungsi/Documents/Webdriver/chromedriver")
 browser.get('https://sa.www4.irs.gov/irfof/lang/en/irfofgetstatus.jsp')
 time.sleep(2)
@@ -38,16 +49,10 @@ rowReader = csv.reader(socialFile)
 def autotax ():
       for row in rowReader :
             staleElement = True
-            try:
-                  WebDriverWait(browser, 3).until(EC.alert_is_present(),
-                                                  'Timed out waiting for PA creation ' +
-                                                  'confirmation popup to appear.')
+            while ((isAlertPresent())):
+                  browser.switch_to.alert.accept()
 
-                  alert = browser.switch_to.alert
-                  alert.accept()
-                  print("alert accepted")
-            except TimeoutException:
-                  print("no alert")
+
             while (staleElement):
                   try:
                         TIN3 = browser.find_element_by_id('TIN3')
@@ -67,6 +72,8 @@ def autotax ():
             Refund.send_keys(row[1])
             time.sleep(2)
             Submit.click()
+            while ((isAlertPresent())):
+                  browser.switch_to.alert.accept()
             outputFile = open('report.csv', 'w')
             try :
                   element = browser.find_element_by_id("contentpage_lesswhitespace")

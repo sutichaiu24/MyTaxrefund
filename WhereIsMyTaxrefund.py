@@ -44,7 +44,7 @@ Single = browser.find_element_by_id('filingStatus1')
 Refund = browser.find_element_by_id('refundAmount')
 Submit = browser.find_element_by_id('Submit2')
 
-socialFile = open('social.csv')
+socialFile = open('ListName2018.csv')
 rowReader = csv.reader(socialFile)
 def autotax ():
       for row in rowReader :

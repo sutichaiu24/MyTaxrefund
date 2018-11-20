@@ -2,7 +2,7 @@ from selenium import webdriver
 import time
 import csv
 import requests
-import urllib.parse
+import urllib
 
 
 from selenium.common.exceptions import NoSuchElementException
@@ -30,8 +30,9 @@ def isAlertPresent():
              return True
       except  NoAlertPresentException:
             print ('Noalert')
-            return False
-browser =  webdriver.Chrome("/Users/sudhichaiungsuthornrungsi/Documents/Webdriver/chromedriver")
+
+browser = webdriver.Firefox()
+#browser =  webdriver.Chrome("/Users/sudhichaiungsuthornrungsi/Documents/Webdriver/chromedriver")
 browser.get('https://sa.www4.irs.gov/irfof/lang/en/irfofgetstatus.jsp')
 time.sleep(2)
 browser.switch_to.alert.accept()
@@ -64,7 +65,7 @@ def autotax ():
                         staleElement = False
                   except StaleElementReferenceException:
                         staleElement = True
-            print('คนที่'+ str(rowReader.line_num))
+            print('a'+ str(rowReader.line_num))
             TIN3.send_keys(row[0].split('-')[0])
             TIN2.send_keys(row[0].split('-')[1])
             TIN5.send_keys(row[0].split('-')[2])
